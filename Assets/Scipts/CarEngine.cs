@@ -12,6 +12,11 @@ public class CarEngine : MonoBehaviour
 
     float speed = 0;
 
+    private void Start()
+    {
+        m_RemainingFuel = m_MaxFuel;
+    }
+
     void Update()
     {
         speed = -Input.GetAxis("Horizontal") * m_SpeedMultiplier;
@@ -25,9 +30,13 @@ public class CarEngine : MonoBehaviour
             maxMotorTorque = m_RearWheel.motor.maxMotorTorque
         };
 
-        Debug.Log(myMotor.motorSpeed);
-
         m_FrontWheel.motor = myMotor;
         m_RearWheel.motor = myMotor;
+    }
+
+    public void AddFuel(float fuelAmount)
+    {
+        m_RemainingFuel += Mathf.Min(m_MaxFuel - m_RemainingFuel, fuelAmount);
+        Debug.Log(m_RemainingFuel);
     }
 }
