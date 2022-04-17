@@ -6,7 +6,7 @@ public class GemPickup : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<CarEngine>() != null)
+        if (collision.GetComponent<CarMovement>() != null)
         {
             CurrencyManager.PropetyInstance.AddGem();
             Destroy(gameObject);

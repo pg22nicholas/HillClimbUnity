@@ -50,7 +50,7 @@ public class FuelPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CarEngine engine = collision.GetComponent<CarEngine>();
+        CarMovement engine = collision.GetComponent<CarMovement>();
         if (engine != null)
         {
             engine.AddFuel(m_FuelAmount);

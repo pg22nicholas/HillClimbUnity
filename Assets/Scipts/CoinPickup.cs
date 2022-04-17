@@ -8,7 +8,7 @@ public class CoinPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<CarEngine>() != null)
+        if (collision.GetComponent<CarMovement>() != null)
         {
             CurrencyManager.PropetyInstance.AddCoin(m_CoinAmount);
             Destroy(gameObject);

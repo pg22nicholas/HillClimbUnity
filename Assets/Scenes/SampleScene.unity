@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 5327563}
   - component: {fileID: 5327562}
   - component: {fileID: 5327561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: front-wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,6 @@ GameObject:
   m_Component:
   - component: {fileID: 25909902}
   - component: {fileID: 25909901}
-  - component: {fileID: 25909900}
   - component: {fileID: 25909899}
   m_Layer: 0
   m_Name: woodPiece (3)
@@ -290,27 +289,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 1}
   m_EdgeRadius: 0
---- !u!50 &25909900
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25909898}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &25909901
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -392,7 +370,7 @@ GameObject:
   - component: {fileID: 26289177}
   - component: {fileID: 26289174}
   - component: {fileID: 26289180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,6 +466,8 @@ Transform:
   m_Children:
   - {fileID: 5327560}
   - {fileID: 113866413}
+  - {fileID: 1781757528}
+  - {fileID: 1754829185}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -576,8 +556,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FrontWheel: {fileID: 26289177}
   m_RearWheel: {fileID: 26289174}
-  m_SpeedMultiplier: 1500
+  m_SpeedMultiplier: 1000
   m_MaxFuel: 20
+  m_TurnSpeed: 0.003
+  raycastFrontWheelLoc: {fileID: 1781757528}
+  raycastRearWheelLoc: {fileID: 1754829185}
+  m_RaycastDistance: 0.54
 --- !u!1 &113866412
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +574,7 @@ GameObject:
   - component: {fileID: 113866416}
   - component: {fileID: 113866415}
   - component: {fileID: 113866414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rear-wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,7 +777,6 @@ GameObject:
   m_Component:
   - component: {fileID: 619876022}
   - component: {fileID: 619876021}
-  - component: {fileID: 619876020}
   - component: {fileID: 619876023}
   m_Layer: 0
   m_Name: woodPiece
@@ -802,27 +785,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!50 &619876020
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619876019}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &619876021
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1024,6 +986,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1754829184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754829185}
+  m_Layer: 6
+  m_Name: RaycastReadLoc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1754829185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754829184}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.98, y: -1.32, z: 0}
+  m_LocalScale: {x: 0.660859, y: 0.56682736, z: 1}
+  m_Children: []
+  m_Father: {fileID: 26289176}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1781757527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1781757528}
+  m_Layer: 6
+  m_Name: RaycastFrontLoc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1781757528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781757527}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.53, y: -1.33, z: 0}
+  m_LocalScale: {x: 0.660859, y: 0.56682736, z: 1}
+  m_Children: []
+  m_Father: {fileID: 26289176}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1995489590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1056,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1995489594}
   - component: {fileID: 1995489593}
-  - component: {fileID: 1995489592}
   - component: {fileID: 1995489591}
   m_Layer: 0
   m_Name: woodPiece (1)
@@ -1069,27 +1090,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 1}
   m_EdgeRadius: 0
---- !u!50 &1995489592
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995489590}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &1995489593
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1166,7 +1166,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1996027208}
   - component: {fileID: 1996027207}
-  - component: {fileID: 1996027206}
   - component: {fileID: 1996027205}
   m_Layer: 0
   m_Name: woodPiece (2)
@@ -1201,27 +1200,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 1}
   m_EdgeRadius: 0
---- !u!50 &1996027206
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996027204}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &1996027207
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1288,64 +1266,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.529}
---- !u!1001 &2143233806
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 949917933642404105, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_Name
-      value: Gem
-      objectReference: {fileID: 0}
-    - target: {fileID: 2960103901556202724, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8462751960179664299, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7eafa73406ee65c40aa6c155af45aae3, type: 3}
