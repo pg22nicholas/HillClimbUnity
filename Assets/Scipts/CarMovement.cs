@@ -28,7 +28,6 @@ public class CarMovement : MonoBehaviour
         turn = -Input.GetAxis("Horizontal") * m_SpeedMultiplier;
 
         TurnCarInCar();
-
     }
 
     // Turn car by axis controls if in mid-air
@@ -46,7 +45,7 @@ public class CarMovement : MonoBehaviour
             Debug.DrawRay(raycastRearWheelLoc.position, transform.up * -1 * m_RaycastDistance, Color.green);
 
         // if the car is not upright on ground, turn
-        if (!Physics2D.Raycast(raycastFrontWheelLoc.position, transform.up * -1 * m_RaycastDistance) &&
+        if (!Physics2D.Raycast(raycastFrontWheelLoc.position, transform.up * -1 * m_RaycastDistance) ||
             !Physics2D.Raycast(raycastRearWheelLoc.position, transform.up * -1, m_RaycastDistance))
         {
             RigidBody.AddTorque(m_TurnSpeed * turn, ForceMode2D.Force);
