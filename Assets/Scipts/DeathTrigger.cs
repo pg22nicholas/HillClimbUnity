@@ -24,7 +24,8 @@ public class DeathTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EndGame();
+        if (collision.tag == "Floor")
+            EndGame();
     }
 
     private void EndGame()
