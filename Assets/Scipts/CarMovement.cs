@@ -48,7 +48,7 @@ public class CarMovement : MonoBehaviour
         if (!Physics2D.Raycast(raycastFrontWheelLoc.position, transform.up * -1 * m_RaycastDistance) ||
             !Physics2D.Raycast(raycastRearWheelLoc.position, transform.up * -1, m_RaycastDistance))
         {
-            RigidBody.AddTorque(m_TurnSpeed * turn, ForceMode2D.Force);
+            RigidBody.AddTorque(m_TurnSpeed * turn * -1, ForceMode2D.Force);
         }
     }
 
