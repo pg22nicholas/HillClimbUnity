@@ -95,5 +95,6 @@ public class CarMovement : MonoBehaviour
     public void EnableInput(bool isEnableInput)
     {
         m_IsEnableInput = isEnableInput;
+        m_FuelLoseSpeed = 0;
     }
 }
