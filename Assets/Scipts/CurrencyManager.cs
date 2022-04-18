@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CurrencyManager : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI CoinUIText;
+    [SerializeField] TextMeshProUGUI GemUIText; 
 
     private int m_CoinAmount = 0;
     private int m_GemsCollected = 0;
@@ -27,12 +31,12 @@ public class CurrencyManager : MonoBehaviour
     public void AddCoin(int CoinAmount)
     {
         m_CoinAmount += CoinAmount;
-        Debug.Log(m_CoinAmount + " Coins");
+        CoinUIText.text = m_CoinAmount.ToString();
     }
 
     public void AddGem()
     {
         m_GemsCollected++;
-        Debug.Log(m_GemsCollected + " Gems");
+        GemUIText.text = m_GemsCollected.ToString();
     }
 }

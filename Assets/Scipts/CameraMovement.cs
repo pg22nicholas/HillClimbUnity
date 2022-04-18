@@ -13,7 +13,7 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(car.transform.position.x, car.transform.position.y, transform.position.z);
     }
 
-    private void Update()
+    private void FixedUpdate() 
     {
         Vector2 deltaVec = (car.transform.position - transform.position) / CameraSlowdown;
         transform.position = new Vector3(transform.position.x + deltaVec.x, transform.position.y + deltaVec.y, transform.position.z);
