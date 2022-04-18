@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FuelPickup : MonoBehaviour
 {
-    [SerializeField] private float m_FuelAmount = 5;
 
     [SerializeField] private float m_DurationMoving = 1;
     [SerializeField] private float m_MoveAmount = 1;
@@ -53,7 +52,7 @@ public class FuelPickup : MonoBehaviour
         CarMovement engine = collision.GetComponent<CarMovement>();
         if (engine != null)
         {
-            engine.AddFuel(m_FuelAmount);
+            engine.AddFuel();
             StopCoroutine(LerpMovement());
             Destroy(gameObject);
         }

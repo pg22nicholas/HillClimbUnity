@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarMovement : MonoBehaviour
 {
     [SerializeField] WheelJoint2D m_FrontWheel, m_RearWheel;
     [SerializeField] float m_SpeedMultiplier = 1f;
-    [SerializeField] private float m_MaxFuel = 20;
+    [SerializeField] private float m_MaxFuel = 1000;
     [SerializeField] private float m_TurnSpeed = 10f;
     [SerializeField] private Transform raycastFrontWheelLoc; 
     [SerializeField] private Transform raycastRearWheelLoc;
     [SerializeField] private float m_RaycastDistance = 1;
+    [SerializeField] private float m_FuelLoseSpeed = 1f;
+    [SerializeField] private Slider m_UIFuelBar;
     
     private float m_RemainingFuel;
     private Rigidbody2D RigidBody;
@@ -26,8 +29,16 @@ public class CarMovement : MonoBehaviour
     void Update()
     {
         turn = -Input.GetAxis("Horizontal") * m_SpeedMultiplier;
-
+        ConsumeFuel(turn);
         TurnCarInCar();
+    }
+
+    // Consume fuel, using turnAxis as multiplier if car is moving
+    void ConsumeFuel(float turnAxis)
+    {
+        float turnMultiplier = turnAxis != 0 ? 1 : .1f;
+        m_RemainingFuel -= m_FuelLoseSpeed * Time.deltaTime * turnMultiplier;
+        m_UIFuelBar.value = m_RemainingFuel / m_MaxFuel;
     }
 
     // Turn car by axis controls if in mid-air
@@ -64,9 +75,13 @@ public class CarMovement : MonoBehaviour
         m_RearWheel.motor = myMotor;
     }
 
-    public void AddFuel(float fuelAmount)
+    public void AddFuel()
     {
-        m_RemainingFuel += Mathf.Min(m_MaxFuel - m_RemainingFuel, fuelAmount);
-        Debug.Log(m_RemainingFuel);
+        m_RemainingFuel = m_MaxFuel;
+    }
+
+    public float remainingFuel
+    {
+        get { return m_RemainingFuel; }
     }
 }
