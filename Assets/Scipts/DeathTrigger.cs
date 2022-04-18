@@ -6,11 +6,12 @@ using UnityEngine;
 public class DeathTrigger : MonoBehaviour
 {
     [SerializeField] private CarMovement car;
+    [SerializeField] private GameObject LoseScreen;
 
 
     void Start()
     {
-        
+        LoseScreen.SetActive(false);
     }
 
     void Update()
@@ -28,6 +29,7 @@ public class DeathTrigger : MonoBehaviour
 
     private void EndGame()
     {
-        Debug.Log("dead");
+        LoseScreen.SetActive(true);
+        car.EnableInput(false);
     }
 }

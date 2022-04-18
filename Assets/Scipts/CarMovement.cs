@@ -17,6 +17,7 @@ public class CarMovement : MonoBehaviour
     
     private float m_RemainingFuel;
     private Rigidbody2D RigidBody;
+    private bool m_IsEnableInput = true;
 
     float turn = 0;
 
@@ -28,7 +29,11 @@ public class CarMovement : MonoBehaviour
 
     void Update()
     {
-        turn = -Input.GetAxis("Horizontal") * m_SpeedMultiplier;
+        if (m_IsEnableInput)
+            turn = -Input.GetAxis("Horizontal") * m_SpeedMultiplier;
+        else
+            turn = 0;
+
         ConsumeFuel(turn);
         TurnCarInCar();
     }
@@ -39,6 +44,8 @@ public class CarMovement : MonoBehaviour
         float turnMultiplier = turnAxis != 0 ? 1 : .1f;
         m_RemainingFuel -= m_FuelLoseSpeed * Time.deltaTime * turnMultiplier;
         m_UIFuelBar.value = m_RemainingFuel / m_MaxFuel;
+        if (m_RemainingFuel <= 0)
+            m_RemainingFuel = 0;
     }
 
     // Turn car by axis controls if in mid-air
@@ -83,5 +90,10 @@ public class CarMovement : MonoBehaviour
     public float remainingFuel
     {
         get { return m_RemainingFuel; }
+    }
+
+    public void EnableInput(bool isEnableInput)
+    {
+        m_IsEnableInput = isEnableInput;
     }
 }
